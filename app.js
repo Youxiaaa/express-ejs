@@ -7,10 +7,14 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.render('index.ejs')
 })
-app.get('/:name', (req, res) => {
-  const { name } = req.params
-  // 倒入 name 資料
-  res.render('person.ejs', { name })
+
+const users = [
+  {id: 1, label: 'ryan', age: 30},
+  {id: 2, label: 'tom', age: 32}
+]
+
+app.get('/users', (req, res) => {
+  res.render('users.ejs', { users })
 })
 
 app.listen(5500, () => {
